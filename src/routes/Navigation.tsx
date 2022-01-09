@@ -1,9 +1,9 @@
-import React from "react";
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
   NavLink,
+  Redirect,
 } from "react-router-dom";
 import Logo from "../logo.svg";
 import { LazyPage1 } from "../pages";
@@ -19,7 +19,7 @@ export const Navigator = () => {
           <ul>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
+                activeClassName="nav-active"
                 to="/"
               >
                 Home
@@ -27,7 +27,7 @@ export const Navigator = () => {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
+                activeClassName="nav-active"
                 to="/lazy1"
               >
                 Lazy 1
@@ -35,7 +35,7 @@ export const Navigator = () => {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
+                activeClassName="nav-active"
                 to="/lazy2"
               >
                 Lazy 2
@@ -43,7 +43,7 @@ export const Navigator = () => {
             </li>
             <li>
               <NavLink
-                className={({ isActive }) => (isActive ? "nav-active" : "")}
+                activeClassName="nav-active"
                 to="/lazy3"
               >
                 Lazy 3
@@ -54,19 +54,13 @@ export const Navigator = () => {
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Routes>
-          <Route path="/lazy1" element={<LazyPage1 />}></Route>
-          <Route path="/lazy2" element={<LazyPage2 />}></Route>
-          <Route path="/lazy3" element={<LazyPage3 />}></Route>
-          <Route path="/" element={<Home />}></Route>
-        </Routes>
+        <Switch>
+          <Route path="/lazy1"><LazyPage1 /></Route>
+          <Route path="/lazy2"><LazyPage2 /></Route>
+          <Route path="/lazy3"><LazyPage3 /></Route>
+          <Redirect path="*" to="/lazy1" />
+        </Switch>
       </div>
     </Router>
   );
 };
-
-const Home = () => {
-  return (
-    <h1>Home</h1>
-  );
-}
