@@ -1,13 +1,13 @@
 import React, { Suspense } from "react";
 import {
   BrowserRouter as Router,
-  Routes,
+  Switch,
   Route,
   NavLink,
-  Navigate,
 } from "react-router-dom";
 import Logo from "../logo.svg";
 import { routes } from "./routes";
+import { Redirect } from 'react-router-dom';
 
 export const Navigator = () => {
   return (
@@ -21,7 +21,7 @@ export const Navigator = () => {
                 <li key={'li-' + path}>
                   <NavLink
                     key={ 'navlink-' + path}
-                    className={({ isActive }) => (isActive ? "nav-active" : "")}
+                    activeClassName="nav-active"
                     to={path}
                   >
                     {name}
@@ -33,12 +33,12 @@ export const Navigator = () => {
 
           {/* A <Switch> looks through its children <Route>s and
               renders the first one that matches the current URL. */}
-          <Routes>
+          <Switch>
             {routes.map(({path, Component}) => (
-              <Route key={ 'route' + path} path={path} element={<Component/>}></Route>
+              <Route key={ 'route' + path} path={path} ><Component/></Route>
             ))}
-            <Route path="*" element={<Navigate to={routes[0].path}/>} />
-          </Routes>
+            <Redirect to={routes[0].path} />
+          </Switch>
         </div>
       </Router>
     </Suspense>
