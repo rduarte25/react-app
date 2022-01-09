@@ -6,9 +6,6 @@ import {
   Redirect,
 } from "react-router-dom";
 import Logo from "../logo.svg";
-import { LazyPage1 } from "../pages";
-import { LazyPage2 } from "../pages";
-import { LazyPage3 } from "../pages";
 
 export const Navigator = () => {
   return (
@@ -55,9 +52,9 @@ export const Navigator = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/lazy1"><LazyPage1 /></Route>
-          <Route path="/lazy2"><LazyPage2 /></Route>
-          <Route path="/lazy3"><LazyPage3 /></Route>
+          <Route path="/lazy1"></Route>
+          <Route path="/lazy2"></Route>
+          <Route path="/lazy3"></Route>
           <Redirect path="*" to="/lazy1" />
         </Switch>
       </div>
