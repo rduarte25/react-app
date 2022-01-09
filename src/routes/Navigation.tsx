@@ -6,6 +6,9 @@ import {
   NavLink,
 } from "react-router-dom";
 import Logo from "../logo.svg";
+import { LazyPage1 } from "../pages";
+import { LazyPage2 } from "../pages";
+import { LazyPage3 } from "../pages";
 
 export const Navigator = () => {
   return (
@@ -25,17 +28,25 @@ export const Navigator = () => {
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "nav-active" : "")}
-                to="/about"
+                to="/lazy1"
               >
-                About
+                Lazy 1
               </NavLink>
             </li>
             <li>
               <NavLink
                 className={({ isActive }) => (isActive ? "nav-active" : "")}
-                to="/users"
+                to="/lazy2"
               >
-                Users
+                Lazy 2
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={({ isActive }) => (isActive ? "nav-active" : "")}
+                to="/lazy3"
+              >
+                Lazy 3
               </NavLink>
             </li>
           </ul>
@@ -44,26 +55,15 @@ export const Navigator = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          <Route path="/about" element={<About />}></Route>
-          <Route path="/users" element={<Users />}></Route>
+          <Route path="/lazy1" element={<LazyPage1 />}></Route>
+          <Route path="/lazy2" element={<LazyPage2 />}></Route>
+          <Route path="/lazy3" element={<LazyPage3 />}></Route>
           <Route path="/" element={<Home />}></Route>
         </Routes>
       </div>
     </Router>
   );
 };
-
-const About = () => {
-  return (
-    <h1>About</h1>
-  );
-}
-
-const Users = () => {
-  return (
-    <h1>Users</h1>
-  );
-}
 
 const Home = () => {
   return (
