@@ -44,11 +44,29 @@ export const Navigator = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Routes>
-          <Route path="/about"></Route>
-          <Route path="/users"></Route>
-          <Route path="/"></Route>
+          <Route path="/about" element={<About />}></Route>
+          <Route path="/users" element={<Users />}></Route>
+          <Route path="/" element={<Home />}></Route>
         </Routes>
       </div>
     </Router>
   );
 };
+
+const About = () => {
+  return (
+    <h1>About</h1>
+  );
+}
+
+const Users = () => {
+  return (
+    <h1>Users</h1>
+  );
+}
+
+const Home = () => {
+  return (
+    <h1>Home</h1>
+  );
+}
