@@ -5,6 +5,7 @@ import {
   NavLink,
   Redirect,
 } from "react-router-dom";
+import ShoppingPage from "../components-patters/pages/ShoppingPage";
 import Logo from "../logo.svg";
 
 export const Navigator = () => {
@@ -16,6 +17,7 @@ export const Navigator = () => {
           <ul>
             <li>
               <NavLink
+                exact
                 activeClassName="nav-active"
                 to="/"
               >
@@ -24,26 +26,20 @@ export const Navigator = () => {
             </li>
             <li>
               <NavLink
+                exact
                 activeClassName="nav-active"
-                to="/lazy1"
+                to="/about"
               >
-                Lazy 1
+                About
               </NavLink>
             </li>
             <li>
               <NavLink
+                exact
                 activeClassName="nav-active"
-                to="/lazy2"
+                to="/users"
               >
-                Lazy 2
-              </NavLink>
-            </li>
-            <li>
-              <NavLink
-                activeClassName="nav-active"
-                to="/lazy3"
-              >
-                Lazy 3
+                Users
               </NavLink>
             </li>
           </ul>
@@ -52,10 +48,12 @@ export const Navigator = () => {
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
         <Switch>
-          <Route path="/lazy1"></Route>
-          <Route path="/lazy2"></Route>
-          <Route path="/lazy3"></Route>
-          <Redirect path="*" to="/lazy1" />
+          <Route path="/">
+            <ShoppingPage />
+          </Route>
+          <Route path="/about" component={() => (<h2>About</h2>)}><h2>About</h2></Route>
+          <Route path="/users" component={() => (<h2>Users</h2>)}>{() => (<h2>Users</h2>)}</Route>
+          <Redirect path="*" to="/" />
         </Switch>
       </div>
     </Router>
