@@ -1,18 +1,12 @@
-import {
-  ProductButtons,
-  ProductCard,
-  ProductImage,
-  ProductTitle,
-} from "../components";
+import { ProductCard } from "../components";
 import "../styles/custom-style.css";
-
-const product = {
-  id: "1",
-  title: "Coffee Mug - Card",
-  image: "./coffee-mug.png",
-};
+import { products } from "../data/products";
+import { useShoppingCart } from '../hooks/useShoppingCart';
 
 const ShoppingPage = () => {
+  
+  const {shoppingCart, onProductCountChange} = useShoppingCart();
+
   return (
     <div>
       <h1>Shopping Store</h1>
@@ -24,38 +18,45 @@ const ShoppingPage = () => {
           flexWrap: "wrap",
         }}
       >
-        <ProductCard product={product}
-        className="bg-dark text-white"
-        >
-          <ProductCard.Image image={product.image} className="custom-image"/>
-          <ProductCard.Title title={product.title} className="text-white text-bold"/>
-          <ProductCard.Buttons className="custom-buttons"/>
-        </ProductCard>
-
-        <ProductCard product={product} className="bg-dark text-white">
-          <ProductImage image={product.image} className="custom-image" style={{
-            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)'
-          }}/>
-          <ProductTitle title={product.title} className="text-white text-bold" />
-          <ProductButtons className="custom-buttons" />
-        </ProductCard>
-        
-        <ProductCard product={product}
-          style={{
-            backgroundColor: '#70d1f8'
-          }}
-        >
-          <ProductImage image={product.image} style={{
-            boxShadow: '10px 10px 10px rgba(0,0,0,0.2)'
-          }}/>
-          <ProductTitle title={product.title} style={{
-            fontWeight: "bold",
-          }}/>
-          <ProductButtons style={{
-            display: 'flex',
-            justifyContent: 'end'
-          }}/>
-        </ProductCard>
+        {products.map((product) => (
+          <ProductCard
+            product={product}
+            className="bg-dark text-white"
+            key={`${product.id}-${product.title}`}
+            onChange={onProductCountChange}
+            value={shoppingCart[product.id]?.count || 0}
+          >
+            <ProductCard.Image image={product.image} className="custom-image" />
+            <ProductCard.Title
+              title={product.title}
+              className="text-white text-bold"
+            />
+            <ProductCard.Buttons className="custom-buttons" />
+          </ProductCard>
+        ))}
+      </div>
+      <div className="shopping-card">
+        {Object.entries(shoppingCart).map(([key, product]) => (
+          <ProductCard
+            product={product}
+            className="bg-dark text-white"
+            key={product.id}
+            style={{
+              width: "100px",
+            }}
+            value={product.count}
+            onChange={onProductCountChange}
+          >
+            <ProductCard.Image image={product.image} className="custom-image" />
+            <ProductCard.Buttons
+              className="custom-buttons"
+              style={{
+                display: "flex",
+                justifyContent: "center",
+              }}
+            />
+          </ProductCard>
+        ))}
       </div>
     </div>
   );

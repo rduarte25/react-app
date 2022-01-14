@@ -5,6 +5,19 @@ export interface ProductCardProps {
   product: Product;
   className?: string;
   style?: CSSProperties;
+  onChange?: (args: OnChangeArgs) => void;
+  value?: number;
+}
+
+export interface OnChangeArgs {
+  product: Product;
+  count: number;
+}
+
+export interface usePropsArgs {
+  product: Product;
+  onChange?: (args: OnChangeArgs) => void;
+  value?: number;
 }
 
 export interface Product {
@@ -26,9 +39,9 @@ export interface ProductButtonsProps {
 
 export interface ProductCardHOCProps {
   ({ children, product }: ProductCardProps): JSX.Element;
-  Title:   (Props: ProductTitleProps)   => JSX.Element;
-  Image:   (Props: ProductImageProps)   => JSX.Element;
-  Buttons: (Props: ProductButtonProps)  => JSX.Element;
+  Title: (Props: ProductTitleProps) => JSX.Element;
+  Image: (Props: ProductImageProps) => JSX.Element;
+  Buttons: (Props: ProductButtonProps) => JSX.Element;
 }
 
 export interface ProductImageProps {
@@ -44,6 +57,10 @@ export interface ProductTitleProps {
 }
 
 export interface ProductButtonProps {
-  className?:string;
+  className?: string;
   style?: CSSProperties;
+}
+
+export interface ProductInCart extends Product {
+  count: number;
 }

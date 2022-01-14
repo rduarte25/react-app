@@ -5,7 +5,7 @@ import { ProductImageProps } from "../interfaces/interfaces";
 import styles from "../styles/styles.module.css";
 import { ProductContext } from "./ProductCard";
 
-export const ProductImage = ({ image = "", className }: ProductImageProps) => {
+export const ProductImage = ({ image = "", className, style }: ProductImageProps) => {
   const { product } = useContext(ProductContext);
 
   let imageToShow: string;
