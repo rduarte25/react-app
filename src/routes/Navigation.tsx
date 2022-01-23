@@ -1,11 +1,16 @@
 import {
   BrowserRouter as Router,
-  Switch,
+  Routes,
   Route,
   NavLink,
-  Redirect,
 } from "react-router-dom";
+import { RegisterPage } from '../forms/pages/RegisterPage';
+import { FormikBasicPage } from "../forms/pages/FormikBasicPage";
+
 import Logo from "../logo.svg";
+import { FormikYupPage } from "../forms/pages/FormikYupPage";
+import { FormikComponentsPage } from "../forms/pages/FormikComponentsPage";
+import { FormikAbstractionPage } from "../forms/pages/FormikAbstractionPage";
 
 export const Navigator = () => {
   return (
@@ -16,34 +21,42 @@ export const Navigator = () => {
           <ul>
             <li>
               <NavLink
-                activeClassName="nav-active"
-                to="/"
+                className={ ({isActive}) => ( isActive ? "nav-active" : "") }
+                to="/register"
               >
-                Home
+                Register Page
               </NavLink>
             </li>
             <li>
               <NavLink
-                activeClassName="nav-active"
-                to="/lazy1"
+                className={ ({isActive}) => ( isActive ? "nav-active" : "") }
+                to="/formik-basic"
               >
-                Lazy 1
+                Formik - Basic
               </NavLink>
             </li>
             <li>
               <NavLink
-                activeClassName="nav-active"
-                to="/lazy2"
+                className={ ({isActive}) => ( isActive ? "nav-active" : "") }
+                to="/formik-yup"
               >
-                Lazy 2
+                Formik - YUP
               </NavLink>
             </li>
             <li>
               <NavLink
-                activeClassName="nav-active"
-                to="/lazy3"
+                className={ ({isActive}) => ( isActive ? "nav-active" : "") }
+                to="/formik-components"
               >
-                Lazy 3
+                Formik - Components
+              </NavLink>
+            </li>
+            <li>
+              <NavLink
+                className={ ({isActive}) => ( isActive ? "nav-active" : "") }
+                to="/formik-abstraction"
+              >
+                Formik - Abstraction
               </NavLink>
             </li>
           </ul>
@@ -51,12 +64,13 @@ export const Navigator = () => {
 
         {/* A <Switch> looks through its children <Route>s and
             renders the first one that matches the current URL. */}
-        <Switch>
-          <Route path="/lazy1"></Route>
-          <Route path="/lazy2"></Route>
-          <Route path="/lazy3"></Route>
-          <Redirect path="*" to="/lazy1" />
-        </Switch>
+        <Routes>
+          <Route path="/register" element={<RegisterPage />} />
+          <Route path="/formik-basic" element={<FormikBasicPage/>} />
+          <Route path="/formik-yup" element={<FormikYupPage/>} />
+          <Route path="/formik-components" element={<FormikComponentsPage/>} />
+          <Route path="/formik-abstraction" element={<FormikAbstractionPage/>} />
+        </Routes>
       </div>
     </Router>
   );
