@@ -1,10 +1,9 @@
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 
+import { CustomField, CustomSelect, CustomCheckbox  } from '../components';
+
 import "../styles/styles.css";
-import { CustomField } from '../components/CustomField';
-import { CustomSelect } from '../components/CustomSelect';
-import { CustomCheckbox } from "../components/CustomCheckbox";
 
 export const FormikAbstractionPage = () => {
   return (
